@@ -5,4 +5,6 @@ if executor == "Wave" then
     loadstring(game:HttpGet("https://raw.githubusercontent.com/callme39Q/Lua/refs/heads/main/Main"))()
 elseif executor == "Solara" then
     loadstring(game:HttpGet("https://raw.githubusercontent.com/callme39Q/Lua/refs/heads/main/Solara%20fix"))() -- from telegram
+else
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/callme39Q/Lua/refs/heads/main/Main"))()
 end
