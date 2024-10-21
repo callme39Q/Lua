@@ -1,0 +1,8 @@
+local executor = identifyexecutor()
+-- idk it work or not work?
+if executor == "Wave" then
+    getgenv().readfile = nil
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/callme39Q/Lua/refs/heads/main/Main"))()
+elseif executor == "Solara" then
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/callme39Q/Lua/refs/heads/main/Solara%20fix"))()
+end
