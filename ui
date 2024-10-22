@@ -1761,7 +1761,7 @@ function OrionLib:MakeWindow(WindowConfig)
 end   
 
 function OrionLib:Destroy()
-	Orion:Destroy()
+	print("lol")
 end
 
 return OrionLib
