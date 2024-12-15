@@ -1877,3 +1877,107 @@ function redzlib:MakeWindow(Configs)
 end
 
 return redzlib
+
+--                                idk
+
+local TweenService = game:GetService("TweenService")
+local notifications = {}
+
+local function createNotification(title, message)
+    local index = #notifications + 1
+
+    local ScreenGui = Instance.new("ScreenGui")
+    ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+    ScreenGui.IgnoreGuiInset = true
+
+    local Notification = Instance.new("Frame")
+    Notification.Parent = ScreenGui
+    Notification.Size = UDim2.new(0.4, 0, 0.1, 0)
+    Notification.Position = UDim2.new(0.3, 0, -0.2, 0)
+    Notification.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+    Notification.BackgroundTransparency = 0.3
+    Notification.BorderSizePixel = 0
+
+    local UICorner = Instance.new("UICorner")
+    UICorner.CornerRadius = UDim.new(0.2, 0)
+    UICorner.Parent = Notification
+
+    local AppIcon = Instance.new("ImageLabel")
+    AppIcon.Parent = Notification
+    AppIcon.Size = UDim2.new(0.15, 0, 0.8, 0)
+    AppIcon.Position = UDim2.new(0.02, 0, 0.1, 0)
+    AppIcon.BackgroundTransparency = 1
+    AppIcon.Image = "rbxassetid://999999999"
+    AppIcon.ScaleType = Enum.ScaleType.Fit
+
+    local Title = Instance.new("TextLabel")
+    Title.Parent = Notification
+    Title.Size = UDim2.new(0.8, 0, 0.4, 0)
+    Title.Position = UDim2.new(0.2, 0, 0.1, 0)
+    Title.BackgroundTransparency = 1
+    Title.TextColor3 = Color3.fromRGB(255, 255, 255)
+    Title.Font = Enum.Font.GothamBold
+    Title.TextScaled = true
+    Title.Text = title
+
+    local Content = Instance.new("TextLabel")
+    Content.Parent = Notification
+    Content.Size = UDim2.new(0.8, 0, 0.4, 0)
+    Content.Position = UDim2.new(0.2, 0, 0.5, 0)
+    Content.BackgroundTransparency = 1
+    Content.TextColor3 = Color3.fromRGB(255, 255, 255)
+    Content.Font = Enum.Font.Gotham
+    Content.TextScaled = true
+    Content.TextWrapped = true
+    Content.Text = message
+
+    local Countdown = Instance.new("TextLabel")
+    Countdown.Parent = Notification
+    Countdown.Size = UDim2.new(0.15, 0, 0.4, 0)
+    Countdown.Position = UDim2.new(0.8, 0, 0.1, 0)
+    Countdown.BackgroundTransparency = 1
+    Countdown.TextColor3 = Color3.fromRGB(255, 255, 255)
+    Countdown.Font = Enum.Font.GothamBold
+    Countdown.TextScaled = true
+    Countdown.Text = "Now"
+
+    local Sound = Instance.new("Sound")
+    Sound.Parent = Notification
+    Sound.SoundId = "rbxassetid://99999999" 
+    Sound.Volume = 1
+    Sound:Play()
+
+    local ShowTween = TweenService:Create(
+        Notification,
+        TweenInfo.new(0.5, Enum.EasingStyle.Quart, Enum.EasingDirection.Out),
+        {Position = UDim2.new(0.3, 0, 0.1 + (index - 1) * 0.12, 0)}
+    )
+
+    local HideTween = TweenService:Create(
+        Notification,
+        TweenInfo.new(0.5, Enum.EasingStyle.Quart, Enum.EasingDirection.In),
+        {Position = UDim2.new(0.3, 0, -0.2, 0)} 
+    )
+
+    table.insert(notifications, Notification)
+
+    ShowTween:Play()
+    ShowTween.Completed:Connect(function()
+        for i = 5, 1, -1 do
+            Countdown.Text = tostring(i) .. "s"
+            wait(1)
+        end
+        HideTween:Play()
+        HideTween.Completed:Connect(function()
+            table.remove(notifications, 1)
+            for j, notif in ipairs(notifications) do
+                TweenService:Create(
+                    notif,
+                    TweenInfo.new(0.3, Enum.EasingStyle.Quart, Enum.EasingDirection.Out),
+                    {Position = UDim2.new(0.3, 0, 0.1 + (j - 1) * 0.12, 0)}
+                ):Play()
+            end
+            Notification:Destroy()
+        end)
+    end)
+end
