@@ -3,9 +3,9 @@ local executor = identifyexecutor()
 if executor == "Wave" then
     getgenv().readfile = nil -- from someone account in x
     wait(1)
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/callme39Q/Lua/refs/heads/main/Main"))()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/callme39Q/Lua/refs/heads/main/Autoexe"))()
 elseif executor == "Solara" then
     loadstring(game:HttpGet("https://raw.githubusercontent.com/callme39Q/Lua/refs/heads/main/Solara%20fix"))() -- from telegram
 else
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/callme39Q/Lua/refs/heads/main/Main"))()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/callme39Q/Lua/refs/heads/main/Autoexe"))()
 end
