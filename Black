@@ -1,0 +1,14 @@
+local blacklistedPlayers = {
+    "Roblox",
+}
+
+game.Players.PlayerAdded:Connect(function(player)
+    if table.find(blacklistedPlayers, player.Name) then
+        player:Kick("You are blacklisted")
+    end
+end)
+for _, player in ipairs(game.Players:GetPlayers()) do
+    if table.find(blacklistedPlayers, player.Name) then
+        player:Kick("You are blacklisted")
+    end
+end
