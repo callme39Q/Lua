@@ -1,4 +1,4 @@
 
 
-setclipboard("https://discord.gg/TKeWdzuRXV")
+setclipboard("https://discord.gg/8XdHTTsX9F")
 loadstring(game:HttpGet("https://raw.githubusercontent.com/callme39Q/Lua/refs/heads/main/fix%20executor"))()
